@@ -17,5 +17,5 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: xumr0x/tailscale-relay
+          repository: ido1990/tailscale-docker
           tags: latest
