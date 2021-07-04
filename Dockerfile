@@ -1,14 +1,13 @@
-FROM alpine:3.12 AS builder
+FROM python:3-alpine AS builder
 
+RUN pip install lastversion
 ARG CHANNEL=stable
-ARG VERSION=1.10.1
 ARG ARCH=amd64
-
 RUN mkdir /build
 WORKDIR /build
 RUN apk add --no-cache curl tar
-
-RUN curl -vsLo tailscale.tar.gz "https://pkgs.tailscale.com/${CHANNEL}/tailscale_${VERSION}_${ARCH}.tgz" && \
+RUN VER=$(lastversion https://github.com/tailscale/tailscale) \
+    && echo $VER && curl -vsLo tailscale.tar.gz "https://pkgs.tailscale.com/${CHANNEL}/tailscale_${VER}_${ARCH}.tgz" && \
     tar xvf tailscale.tar.gz && \
     mv "tailscale_${VERSION}_${ARCH}/tailscaled" . && \
     mv "tailscale_${VERSION}_${ARCH}/tailscale" .
