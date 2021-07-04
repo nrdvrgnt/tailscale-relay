@@ -9,8 +9,8 @@ RUN apk add --no-cache curl tar
 RUN VER=$(lastversion https://github.com/tailscale/tailscale) \
     && echo $VER && curl -vsLo tailscale.tar.gz "https://pkgs.tailscale.com/${CHANNEL}/tailscale_${VER}_${ARCH}.tgz" && \
     tar xvf tailscale.tar.gz && \
-    mv "tailscale_${VERSION}_${ARCH}/tailscaled" . && \
-    mv "tailscale_${VERSION}_${ARCH}/tailscale" .
+    mv "tailscale_${VER}_${ARCH}/tailscaled" . && \
+    mv "tailscale_${VER}_${ARCH}/tailscale" .
 
 FROM alpine:3.12
 
