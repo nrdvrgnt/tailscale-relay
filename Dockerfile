@@ -6,6 +6,7 @@ ARG ARCH=amd64
 RUN mkdir /build
 WORKDIR /build
 RUN apk add --no-cache curl tar
+ADD http://date.jsontest.com/ /tmp/bustcache
 RUN VER=$(lastversion https://github.com/tailscale/tailscale) \
     && echo $VER && curl -vsLo tailscale.tar.gz "https://pkgs.tailscale.com/${CHANNEL}/tailscale_${VER}_${ARCH}.tgz" && \
     tar xvf tailscale.tar.gz && \
