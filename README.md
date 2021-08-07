@@ -1,6 +1,6 @@
 # tailscale-relay
 
-This is a docker image based on `alpine:3.12` for setting up a [tailscale](https://tailscale.com) instance in relay mode and exit node.
+This is a docker image based on `alpine:3` for setting up a [tailscale](https://tailscale.com) instance in relay mode and exit node.
 
 ## Prerequisites
 
