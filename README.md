@@ -31,7 +31,7 @@ docker run -d \
     ido1990/tailscale-docker:latest
 ```
 
-**This version should pull the lastest version of Tailscale for every deployment.**
+**This version should pull the lastest version of Tailscale for every deployment (weekly).**
 **You can use [Watchtower](https://github.com/containrrr/watchtower) to keep Tailscale updated.**
 
 Find this image on [Docker Hub](https://hub.docker.com/r/ido1990/tailscale-docker)
