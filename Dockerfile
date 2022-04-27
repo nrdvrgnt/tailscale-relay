@@ -13,9 +13,10 @@ RUN VER=$(lastversion https://github.com/tailscale/tailscale) \
     mv "tailscale_${VER}_${ARCH}/tailscaled" . && \
     mv "tailscale_${VER}_${ARCH}/tailscale" .
 
+
 FROM alpine:3
 
-ENV LOGINSERVER=https://login.tailscale.com
+ENV LOGINSERVER=https://controlplane.tailscale.com
 
 RUN apk add --no-cache iptables
 
