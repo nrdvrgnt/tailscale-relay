@@ -1,12 +1,12 @@
 # tailscale-relay
 
-This is a docker image based on `alpine:3.12` for setting up a [tailscale](https://tailscale.com) instance in relay mode and exit node.
+This is a docker image based on `alpine:3` for setting up a [tailscale](https://tailscale.com) instance in relay mode and exit node.
 
 ## Prerequisites
 
 - Defined docker network via `docker network create -d bridge <network name>`
 - Subnet network via `docker inspect <NETWORK ID> | grep Subnet`
-- If you want, you can add multiple subnets using comma to seperate, eg. 172.23.0.0/16, 10.0.0.0/24
+- If you want, you can add multiple subnets using comma to seperate, eg. 172.23.0.0/16,10.0.0.0/24
 - Auth key from https://login.tailscale.com/admin/authkeys (e.g. `tskey-123abc...`)
 
 ## Requirements
@@ -31,7 +31,7 @@ docker run -d \
     ido1990/tailscale-docker:latest
 ```
 
-**This version should pull the last verions of Tailscale every for every deployment.**
+**This version should pull the lastest version of Tailscale for every deployment (weekly).**
 **You can use [Watchtower](https://github.com/containrrr/watchtower) to keep Tailscale updated.**
 
 Find this image on [Docker Hub](https://hub.docker.com/r/ido1990/tailscale-docker)
