@@ -20,9 +20,14 @@ ENV LOGINSERVER=https://controlplane.tailscale.com
 
 RUN apk add --no-cache iptables
 
+ENV TINI_VERSION v0.19.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini.sha256sum /tini.sha256sum
+RUN echo "$(cat /tini.sha256sum)" | sha256sum -c && chmod +x /tini
+
 COPY --from=builder /build/tailscale /usr/bin/
 COPY --from=builder /build/tailscaled /usr/bin/
 
 COPY entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
+ENTRYPOINT ["/tini", "--", "/bin/sh", "/entrypoint.sh"]
