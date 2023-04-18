@@ -1,0 +1,21 @@
+# Use Tailscale as the base image
+
+
+
+
+
+
+FROM dido1990/tailscale-docker:latest
+
+# Install OpenVPN and its dependencies
+RUN apt-get update && apt-get install -y openvpn ca-certificates
+
+# Copy Mullvad VPN configuration files into the container
+COPY mullvad-config/ /etc/openvpn/
+
+# Modify Tailscale startup script to start OpenVPN with Mullvad configuration
+RUN sed -i 's|#!/bin/bash|#!/bin/bash\n\n# Start OpenVPN\nopenvpn --config /etc/openvpn/mullvad.conf --daemon|' /var/run/tailscale/tailscaled.sock
+
+# Set up Tailscale
+ENTRYPOINT ["tailscaled"]
+CMD ["--state=/state/tailscaled.state", "--socket=/var/run/tailscale/tailscaled.sock"]
